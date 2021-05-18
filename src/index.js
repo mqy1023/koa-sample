@@ -1,5 +1,7 @@
 const Koa = require('koa')
 const app = new Koa()
+const koaStatic = require('koa-static')
+const path = require('path')
 
 const Router = require('koa-router')
 const router = new Router()
@@ -10,11 +12,20 @@ const koaBody = require('koa-body')  //接受请求传入的参数
 const ENV = 'dev-test' // 测试环境
 const TEST_TOKEN = `token123456`
 
+// 静态文件中间件
+app.use(koaStatic(path.join(__dirname, 'uploads')))
+// 访问时不需要加上uploads，如：http://localhost:3390/upload_07c7882c6b8a7a981b9ea4568209cf16.png
+
+
 // 接受post参数解析
 app.use(koaBody({
-    multipart: true
+    multipart: true,
+    formidable: {
+        maxFileSize: 20 * 1024 * 1024,	// 设置上传文件大小最大限制，默认20M
+        uploadDir: path.join(__dirname, 'uploads'),
+        keepExtensions: true // 保存扩展名
+    }
 }))
-
 
 
 // 全局中间件, 可以用来配置一些全局参数

@@ -13,7 +13,7 @@
 
 #### 二、koa-body
 
-`koa-body` 简化请求数据解析
+`koa-body` 简化请求数据解析，也可以使用 `koa-body` 接受文件
 
 ```javascript
 const koaBody = require('koa-body')  //接受请求传入的参数
@@ -30,12 +30,9 @@ const bodyData = ctx.request.body // post请求body
 const params = ctx.request.query // get请求的params
 ```
 
+#### 三、`koa-static` 静态文件中间件
 
-#### 三、nodemon 自动重启服务
-
-`nodemon`用来监视node.js应用程序中的任何更改并自动重启服务
-
-`nodemon src/index.js` 启动命令
+设置静态文件目录，生成图片链接
 
 
 #### 四、使用Sequelize操作数据库
@@ -49,5 +46,8 @@ const params = ctx.request.query // get请求的params
 * 3、基本使用，查看 `controller/leida.js`
 
 
+#### 五、nodemon 自动重启服务
 
+`nodemon`用来监视node.js应用程序中的任何更改并自动重启服务
 
+`nodemon src/index.js` 启动命令

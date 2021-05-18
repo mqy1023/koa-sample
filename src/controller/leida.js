@@ -18,14 +18,15 @@ router.post('/add', async (ctx) => {
     }
 })
 
-router.get('/one', async (ctx) => {
-    const params = ctx.request.query
+router.get('/one/:name', async (ctx) => {
+    const ldName = ctx.params.name
 
+    console.log("ldName==", ldName)
     let oneLeida
     try {
         oneLeida = await Leida.findOne({
             where: {
-                name: params.name || ""
+                name: ldName || ""
             }
         })
 
